@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ClassDrive.Models.CourseModel>
+
+@{ ViewData["Title"] = "Index"; }
+
+<head>
+    <style>
+        body {
+            height: 100%;
+            background-color: #f2f2f2;
+        }
+
+        nav {
+            background-color: #ffffff;
+            height: 76px;
+        }
+
+        .navbar-brand {
+            color: #4f4f4f;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: #4f4f4f;
+        }
+
+        .card {
+            border: none;
+        }
+
+        .class-schedule {
+            text-align: end;
+        }
+
+        .btn-save {
+            background-color: #9C69E2;
+            border: 2px solid #9C69E2;
+            color: #ffffff;
+            border-radius: 8px;
+            width: 48%;
+            float: right;
+        }
+        .btn-text {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-3" style=" margin-top:4%;">
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <img src="https://i.imgur.com/1lxAxm7.png" alt="" srcset="">
+                            </div>
+                            <div class="col-6">
+                                <p class="class-schedule justify-content-end">@Html.DisplayFor(modelItem => item.CourseSchedule)</p>
+                            </div>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.CourseTeacher)</h6>
+                        <h5 class="card-title mb-2">@Html.DisplayFor(modelItem => item.CourseName)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.CourseDescription)</p>
+                        <button type="button" class="btn btn-save floated">@Html.ActionLink("Klik", "ContentList", "ContentModels", new { CourseID = item.CourseID }, new { @style = "color:#ffffff;text-decoration:none;" })</button>
+                    </div>
+                </div>
+            </div>}
+        </div>
+    </div>
+
+</body>

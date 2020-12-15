@@ -1,0 +1,132 @@
+﻿@model IEnumerable<ClassDrive.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <style>
+        body {
+            height: 100%;
+            background-color: #f2f2f2;
+        }
+
+        nav {
+            background-color: #ffffff;
+            height: 76px;
+        }
+
+        .navbar-brand {
+            color: #4f4f4f;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: #4f4f4f;
+        }
+
+        .card {
+            border: none;
+        }
+
+        .class-schedule {
+            text-align: end;
+        }
+
+        .btn-save {
+            background-color: #9C69E2;
+            border: 2px solid #9C69E2;
+            color: #ffffff;
+            border-radius: 8px;
+            width: 48%;
+            float: right;
+        }
+
+        .btn-text {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    @*<h1>Index</h1>
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TaskName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TaskDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TaskDeadline)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TaskCourse)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TaskTeacher)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TaskName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TaskDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TaskDeadline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TaskCourse)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TaskTeacher)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.TaskID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.TaskID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.TaskID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+
+    <div class="">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-3" style=" margin-top:4%;">
+                    <div class="card" style="width: 15rem;">
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <img src="class.png" alt="" srcset="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="class-schedule justify-content-end">@Html.DisplayFor(modelItem => item.TaskDeadline)</p>
+                                </div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.TaskTeacher)</h6>
+                            <h5 class="card-title mb-2">@Html.DisplayFor(modelItem => item.TaskName)</h5>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.TaskDescription)</p>
+                            <button type="button" class="btn btn-save floated">@Html.ActionLink("Klik", "SubmitList", "SubmitModels", new { TaskID = item.TaskID }, new { @style = "color:#ffffff;text-decoration:none;" })</button>
+                        </div>
+                    </div>
+                </div>}
+        </div>
+    </div>
+</body>

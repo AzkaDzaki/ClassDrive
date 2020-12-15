@@ -1,0 +1,178 @@
+﻿@model IEnumerable<ClassDrive.Models.ContentModel>
+
+@{
+    ViewData["Title"] = "ContentList";
+}
+
+<head>
+<style>
+    html, body {
+        height: 100%;
+        background-color: #f2f2f2;
+    }
+
+    nav {
+        background-color: #ffffff;
+        height: 76px;
+    }
+
+    .navbar-brand {
+        color: #4f4f4f;
+        font-weight: 700;
+    }
+
+    .nav-link {
+        color: #4f4f4f;
+    }
+
+    .card {
+        border: none;
+    }
+
+    .class-schedule {
+        text-align: end;
+    }
+
+    .btn-upload {
+        background-color: #9C69E2;
+        border: 2px solid #9C69E2;
+        color: #ffffff;
+        border-radius: 8px;
+        width: 100%;
+        float: right;
+        transition: 300ms;
+    }
+
+        .btn-upload:hover {
+            background-color: #a97aec;
+            border: 2px solid #a97aec;
+            color: #ffffff;
+            border-radius: 8px;
+            width: 100%;
+            float: right;
+            transition: 300ms;
+        }
+
+    table {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    tbody {
+        border: none;
+        background-color: #ffffff;
+    }
+
+        tbody > tr {
+            cursor: pointer;
+            transition: 300ms;
+            color: #000000;
+        }
+
+            tbody > tr:hover {
+                box-shadow: 0px 4px 10px rgb(112, 144, 176, 0.2);
+                transition: 500ms;
+            }
+
+    tr > td > .icon-table {
+        color: #000000;
+        transition: 300ms;
+    }
+
+        tr > td > .icon-table:hover {
+            color: #9C69E2;
+            transition: 300ms;
+        }
+
+    .table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th,
+    .table-borderless > tfoot > tr > td,
+    .table-borderless > tfoot > tr > th,
+    .table-borderless > thead > tr > td,
+    .table-borderless > thead > tr > th {
+        border: none;
+    }
+
+    /* nth-child(1) = the first td in each tr */
+
+
+    /* the second */
+    td:nth-child(1) {
+        width: 300px;
+    }
+
+    /* the third */
+    td:nth-child(2) {
+        width: 350px;
+    }
+
+    /* the third */
+    td:nth-child(3) {
+        width: 200px;
+    }
+
+</style>
+</head>
+    <body>
+        <div style=" margin-top:1%;">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <img src="https://i.imgur.com/1lxAxm7.png" alt="" srcset="">
+                                </div>
+                                <div class="col-6">
+                                    <p class="class-schedule justify-content-end">@ViewBag.ContentList.CourseSchedule</p>
+                                </div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted">@ViewBag.ContentList.CourseTeacher</h6>
+                            <h5 class="card-title mb-2">@ViewBag.ContentList.CourseName</h5>
+                            <p class="card-text">@ViewBag.ContentList.CourseDescription</p>
+                            @if (User.IsInRole("Dosen"))
+                            {
+                                <div class="card-button">
+                                    <button type="button" class="btn btn-upload floated">@Html.ActionLink("Upload File", "CreateContent", "ContentModels", new { CourseID = ViewBag.ContentList.CourseID }, new { @style = "text-decoration:none;color:#fff;" })</button>
+                                    @*<button type="button" class="btn btn-upload floated">Upload File</button>*@
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">By</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                    <tbody>
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.ContentName)</td>
+                            <td> @Html.DisplayFor(modelItem => item.ContentDescription)</td>
+                            <td> @ViewBag.ContentList.CourseTeacher</td>
+                            <td><a asp-action="Download" asp-route-filename="@item.ContentDescription"><span class="fa fa-download"></span></a></td>
+                            @if (User.IsInRole("Dosen"))
+                            {
+                                <td><a asp-action="Delete" asp-route-id="@item.ContentID"><span class="fa fa-trash"></span></a></td>
+                            }
+                            <td><a href="https://api.whatsapp.com/send?text=@item.ContentDescription" data-action="share/whatsapp/share"><span class="fa fa-share-alt"></span></a></td>
+                        </tr>
+                    </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+@*</table>*@

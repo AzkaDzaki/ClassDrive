@@ -1,0 +1,144 @@
+﻿@model ClassDrive.Models.SubmitModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<head>
+    <style>
+        body {
+            height: 100%;
+            background-color: #f2f2f2;
+        }
+
+        nav {
+            background-color: #ffffff;
+            height: 76px;
+        }
+
+        .navbar-brand {
+            color: #4f4f4f;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: #4f4f4f;
+        }
+
+        .card {
+            border: none;
+        }
+
+        .form-icon .form-control {
+            padding-left: 2.375em;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            border-radius: 0%;
+            color: #9C69E2;
+        }
+
+        .form-icon .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #9C69E2;
+        }
+
+        .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: rgba(156, 105, 226, 0.5);
+            opacity: 1; /* Firefox */
+        }
+
+        .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: rgba(156, 105, 226, 0.5);
+        }
+
+        .form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: rgba(156, 105, 226, 0.5);
+        }
+
+        input {
+            color: #9C69E2;
+        }
+
+        .floated {
+            float: left;
+            margin-right: 5px;
+        }
+
+        .btn-save {
+            background-color: #9C69E2;
+            border: 2px solid #9C69E2;
+            color: #ffffff;
+            border-radius: 8px;
+        }
+
+        .btn-text-outline {
+            color: #9C69E2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: #F2F2F2;height: 100vh;">
+
+        <div class="card mx-auto" style="width:98%; margin-top: 1%; margin-bottom:1%; height:87vh;">
+            <div class="card-body container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-title mb-4">
+                            <h4>Student Score</h4>
+                        </div>
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="SubmitID" />
+                            <div class="form-group" style="display:none;">
+                                <label asp-for="TaskID" class="control-label"></label>
+                                <input asp-for="TaskID" class="form-control" />
+                                <span asp-validation-for="TaskID" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <label asp-for="SubmitName" class="control-label"></label>
+                                <input asp-for="SubmitName" class="form-control" />
+                                <span asp-validation-for="SubmitName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <label asp-for="SubmitDescription" class="control-label"></label>
+                                <input asp-for="SubmitDescription" class="form-control" />
+                                <span asp-validation-for="SubmitDescription" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <label asp-for="SubmitTime" class="control-label"></label>
+                                <input asp-for="SubmitTime" class="form-control" />
+                                <span asp-validation-for="SubmitTime" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-icon">
+                                <span class="fa fa-tasks form-control-feedback" asp-validation-for="SubmitScore"></span>
+                                <input asp-for="SubmitScore" class="form-control" />
+                                <span asp-validation-for="SubmitScore" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-save" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    
+
+                <div style="display:none;">
+                    <a asp-action="Index">Back to List</a>
+                </div>
+
+
+
+</body>

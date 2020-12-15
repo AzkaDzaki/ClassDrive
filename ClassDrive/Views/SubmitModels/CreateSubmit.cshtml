@@ -1,0 +1,158 @@
+﻿@model ClassDrive.Models.SubmitModel
+
+@{
+    ViewData["Title"] = "CreateSubmit";
+}
+
+<head>
+    <style>
+        body {
+            height: 100%;
+            background-color: #f2f2f2;
+        }
+
+        nav {
+            background-color: #ffffff;
+            height: 76px;
+        }
+
+        .navbar-brand {
+            color: #4f4f4f;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: #4f4f4f;
+        }
+
+        .card {
+            border: none;
+        }
+
+        .form-icon .form-control {
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            border-bottom: 0px;
+            border-radius: 0%;
+            color: #9C69E2;
+            margin-bottom:40px;
+        }
+
+        .form-icon .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #9C69E2;
+        }
+
+        .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: rgba(156, 105, 226, 0.5);
+            opacity: 1; /* Firefox */
+        }
+
+        .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: rgba(156, 105, 226, 0.5);
+        }
+
+        .form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: rgba(156, 105, 226, 0.5);
+        }
+
+        input {
+            color: #9C69E2;
+        }
+
+        .floated {
+            float: left;
+            margin-right: 5px;
+        }
+
+        .btn-save {
+            background-color: #9C69E2;
+            border: 2px solid #9C69E2;
+            color: #ffffff;
+            border-radius: 8px;
+            width: 48%;
+            float: right;
+        }
+
+        .btn-cancel {
+            background-color: #ffffff;
+            border: 2px solid #9C69E2;
+            border-radius: 8px;
+            color: #9C69E2;
+            width: 48%;
+        }
+
+        .btn-text-outline {
+            color: #9C69E2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: #F2F2F2;height: 100vh;">
+
+        <div class="card mx-auto" style="width:98%; margin-top: 1%; margin-bottom:1%; height:87vh;">
+            <div class="card-body container">
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <div class="text-title mb-4">
+                            <h4>Submit Task</h4>
+                            <p>Submit your task below. Make sure you choose the right file.</p>
+                        </div>
+                        <div class="pr-5">
+                            <form asp-action="CreateSubmit" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group form-icon" style="display:none;">
+                                    <span class="fa fa-users form-control-feedback" asp-validation-for="TaskID"></span>
+                                    <input type="text" class="form-control" placeholder="Title" asp-for="TaskID" value="@ViewBag.CreateSubmit">
+                                    <span asp-validation-for="TaskID" class="text-danger"></span>
+                                </div>
+                                @if (User.IsInRole("Mahasiswa"))
+                                {
+                                    <div class="form-group form-icon" style="display:none;">
+                                        <span class="fa fa-tasks form-control-feedback" asp-validation-for="SubmitName"></span>
+                                        <input type="text" class="form-control" placeholder="Name" asp-for="SubmitName" value="@User.Identity.Name">
+                                        <span asp-validation-for="SubmitName" class="text-danger"></span>
+                                    </div>
+                                }
+                                <div class="form-group form-icon">
+                                    <input asp-for="ContentFile" placeholder="Upload" class="form-control" accept="image/*, application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf" />
+                                    <span asp-validation-for="ContentFile" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-icon" style="display:none;">
+                                    <span class="fa fa-calendar form-control-feedback" asp-validation-for="SubmitTime"></span>
+                                    <input type="text" class="form-control" placeholder="Submit Time" asp-for="SubmitTime">
+                                    <span asp-validation-for="SubmitTime" class="text-danger"></span>
+                                </div>
+                                @if (User.IsInRole("Dosen"))
+                                {
+                                    <div class="form-group form-icon">
+                                        <span class="fa fa-calendar form-control-feedback" asp-validation-for="SubmitScore"></span>
+                                        <input type="text" class="form-control" placeholder="Score" asp-for="SubmitScore">
+                                        <span asp-validation-for="SubmitScore" class="text-danger"></span>
+                                    </div>
+                                }
+                                <div class="card-button">
+                                    <button type="button" class="btn btn-cancel floated">@Html.ActionLink("Cancel", "Index", "TaskModels", null, new { @class = "btn-text-outline", @style = "text-decoration:none;" })</button>
+                                    <input type="submit" value="Create" placeholder="Submit" class="btn btn-save floated" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

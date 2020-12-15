@@ -1,0 +1,120 @@
+﻿<head>
+    <style>
+        body {
+            height: 100%;
+            background-color: #fff;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            transform: translate(0%, -50%);
+        }
+
+        .title {
+            font-size: 76px;
+            font-weight: 700;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .form-icon .form-control {
+            padding-left: 2.375rem;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            border-radius: 0%;
+            color: #9C69E2;
+        }
+
+        .form-icon .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #9C69E2;
+        }
+
+        .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: rgba(156, 105, 226, 0.5);
+            opacity: 1; /* Firefox */
+        }
+
+        .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: rgba(156, 105, 226, 0.5);
+        }
+
+        .form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: rgba(156, 105, 226, 0.5);
+        }
+
+        input {
+            color: #9C69E2;
+        }
+
+        .register {
+            font-weight: 700;
+            text-decoration: none;
+            color: #9C69E2;
+            transition: 300ms;
+        }
+
+            .register:hover {
+                color: #a97aec;
+            }
+
+        .btn-login {
+            width: 100%;
+            font-size: 16px;
+            background-color: #9C69E2;
+            color: #ffffff;
+            padding: 16px;
+            transition: 300ms;
+        }
+
+            .btn-login:hover {
+                width: 100%;
+                font-size: 16px;
+                background-color: #a97aec;
+                color: #ffffff;
+                padding: 16px;
+            }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="d-flex align-item-center center">
+                <h1 class="title"><span style="color:#212353;">Class</span><span style="color:#9C69E2;">DRIVE</span></h1>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center mb-4">
+                <img src="https://i.imgur.com/m1AuWy9.png" alt="Login Image" srcset="" width="400px">
+            </div>
+            <form asp-action="Login" method="post">
+
+                <div class="form-group form-icon">
+                    <span class="fa fa-envelope form-control-feedback"></span>
+                    <input type="text" class="form-control"  id="username" name="username" placeholder="User Name">
+                </div>
+                <div class="form-group form-icon">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
+
+                <button type="submit" value="login" class="btn btn-login mb-3">Login</button>
+            </form>
+
+            <div style="text-align: center; color:#9C69E2">
+                <p>Don't have an account? <a href="/AccountModels/Create" class="register" style="text-decoration:none;">Register</a></p>
+            </div>
+        </div>
+    </div>
+</body>

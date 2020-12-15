@@ -1,0 +1,50 @@
+﻿@model ClassDrive.Models.SubmitModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SubmitModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TaskID" class="control-label"></label>
+                <input asp-for="TaskID" class="form-control" />
+                <span asp-validation-for="TaskID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubmitName" class="control-label"></label>
+                <input asp-for="SubmitName" class="form-control" />
+                <span asp-validation-for="SubmitName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubmitDescription" class="control-label"></label>
+                <input asp-for="SubmitDescription" class="form-control" />
+                <span asp-validation-for="SubmitDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubmitTime" class="control-label"></label>
+                <input asp-for="SubmitTime" class="form-control" />
+                <span asp-validation-for="SubmitTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubmitScore" class="control-label"></label>
+                <input asp-for="SubmitScore" class="form-control" />
+                <span asp-validation-for="SubmitScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

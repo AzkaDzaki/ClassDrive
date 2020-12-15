@@ -1,0 +1,65 @@
+﻿@{ ViewData["Title"] = "Home Page"; }
+<head>
+    <style>
+        body {
+            height: 100%;
+            background-color: #fff;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .floated {
+            float: left;
+            margin-right: 5px;
+        }
+
+        .btn-choose {
+            background-color: #9C69E2;
+            border: 2px solid #9C69E2;
+            color: #ffffff;
+            border-radius: 8px;
+        }
+
+        .btn-create {
+            background-color: #ffffff;
+            border: 2px solid #9C69E2;
+            border-radius: 8px;
+            color: #9C69E2;
+        }
+        .btn-text-outline {
+            color: #9C69E2;
+            text-decoration: none;
+        }
+        .btn-text{
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<div class="container center">
+    <div class="row">
+        <div class="col-6">
+            <h1>Teach hard to achieve your goals</h1>
+            <p>Download file biar pinter!</p>
+            @if (User.IsInRole("Dosen"))
+            {
+                <button type="button" class="btn btn-choose floated">@Html.ActionLink("Create Class", "Create", "CourseModels", null, new { @class = "btn-text", @style = "text-decoration:none;" })</button>
+                <button type="button" class="btn btn-choose floated">@Html.ActionLink("Create Task", "Create", "TaskModels", null, new { @class = "btn-text", @style = "text-decoration:none;" })</button>}
+            @if (User.IsInRole("Mahasiswa"))
+            {
+                <button type="button" class="btn btn-choose floated">@Html.ActionLink("Choose Class", "Index", "CourseModels", null, new { @class = "btn-text", @style = "text-decoration:none;" })</button>
+                <button type="button" class="btn btn-choose floated">@Html.ActionLink("See Task", "Index", "TaskModels", null, new { @class = "btn-text", @style = "text-decoration:none;" })</button>}
+
+        </div>
+        <div class="col-6">
+            <img src="~/bekgron.png" style="background-repeat:no-repeat;background-size:contain" width="600px;"/>
+        </div>
+    </div>
+</div>
